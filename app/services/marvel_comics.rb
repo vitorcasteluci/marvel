@@ -4,19 +4,23 @@ require 'securerandom'
 require 'digest'
 
 class MarvelComics
-  MARVEL_API_ENDPOINT = 'https://gateway.marvel.com/v1/comics/'
+  MARVEL_API_ENDPOINT = 'https://gateway.marvel.com/v1/public/'
 
   attr_reader :conn
 
-  def initialize
-    @conn = Excon.new(url: MARVEL_API_ENDPOINT)
+  def initialize(conn)
+    @conn = Faraday.new(MARVEL_API_ENDPOINT)
   end
 
-  def characters(query_params = {})
+  def self.call(*arg, &block)
+    new(*arg, &block).comics(arg[0])
+  end
+
+  def comics(query_params = {})
     ActiveSupport::JSON.decode(
-      conn.get('characters', query_params.merge(authentication_params))
-      .body
-    )
+        conn.get('comics', query_params.merge(authentication_params))
+        .body
+      )
   end
 
   private
@@ -29,11 +33,11 @@ class MarvelComics
   end
 
   def public_api_key
-    ENV['MARVEL_PUBLIC_API_KEY']
+    'b8afdae5d2d57de8815f783682c5465a'
   end
 
   def private_api_key
-    ENV['MARVEL_PRIVATE_API_KEY']
+    '10deff2c47187df96b339ba9a66cfbad3d291ebd'
   end
 
   def timestamp
@@ -41,6 +45,7 @@ class MarvelComics
   end
 
   def generate_md5(timestamp)
-    Digest::MD5.new.update("#{timestamp}#{private_api_key}#{public_api_key}").to_s
+    Digest::MD5.new
+               .update("#{timestamp}#{private_api_key}#{public_api_key}").to_s
   end
 end
