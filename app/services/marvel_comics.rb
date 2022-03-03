@@ -17,6 +17,7 @@ class MarvelComics
   end
 
   def comics(query_params = {})
+    puts ActiveSupport::JSON.decode(conn.get('comics', query_params.merge(authentication_params)).body)
     ActiveSupport::JSON.decode(
         conn.get('comics', query_params.merge(authentication_params))
         .body
@@ -33,11 +34,11 @@ class MarvelComics
   end
 
   def public_api_key
-    'b8afdae5d2d57de8815f783682c5465a'
+    ENV['MARVEL_PUBLIC_KEY']
   end
 
   def private_api_key
-    '10deff2c47187df96b339ba9a66cfbad3d291ebd'
+    ENV['MARVEL_PRIVATE_KEY']
   end
 
   def timestamp

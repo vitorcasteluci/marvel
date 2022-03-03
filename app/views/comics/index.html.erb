@@ -1,1 +1,32 @@
-<!-- app/views/comics/index.html.erb -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title> Comics </title>
+
+    <style type="text/css" media="all">
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1>Comics</h1>
+        <%= form_tag(comics_path(page: @comics['current_page']), method: :get) do  %>
+            <%= text_field_tag :search, @comics['search'], placeholder: 'Title of the comic'  %>
+            <%= button_tag 'Search' %>
+        <% end =%>
+        <table class="table">
+            <tbody>
+                <% @comics[:comics].each_with_index do |comic, index| %>
+                    <tr>
+                        <td>
+                            <p><%= comic[:title] %></p>
+                            <img src="<%= comic[:thumbnail] %>" style="width:200px"/>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+  </body>

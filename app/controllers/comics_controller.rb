@@ -3,10 +3,6 @@
 # app/controllers/comics_controller.rb
 class ComicsController < ApplicationController
   def index
-    search = params[:search_term]
-    search_params.merge!(nameStartsWith: search) if search.present?
-    @comics = MarvelComics.call({})
-    p @comics['data']['results']
-    @comics
+    @comics = Comics.all(params[:page].to_i, params[:search])
   end
 end
