@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -20,12 +22,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'faraday'
-# Bootstrap for responsiveness
-gem 'bootstrap', '~> 4.3.1'
-
 gem 'dotenv', '~> 2.1', '>= 2.1.1'
-
+gem 'faraday'
+gem 'will_paginate', '~> 3.3'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -37,8 +36,8 @@ gem 'dotenv', '~> 2.1', '>= 2.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'rspec-rails', '~> 3.9.1'
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.9.1'
 end
 
 group :development do
@@ -48,4 +47,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

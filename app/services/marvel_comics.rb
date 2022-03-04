@@ -17,7 +17,6 @@ class MarvelComics
   end
 
   def comics(query_params = {})
-    puts ActiveSupport::JSON.decode(conn.get('comics', query_params.merge(authentication_params)).body)
     ActiveSupport::JSON.decode(
         conn.get('comics', query_params.merge(authentication_params))
         .body

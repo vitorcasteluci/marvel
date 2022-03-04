@@ -6,27 +6,37 @@
     <title> Comics </title>
 
     <style type="text/css" media="all">
-
+        .table {
+            display: flex !important;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     </style>
   </head>
   <body>
     <div class="container">
         <h1>Comics</h1>
-        <%= form_tag(comics_path(page: @comics['current_page']), method: :get) do  %>
+        <%= form_tag(comics_path(page: 1), method: :get) do  %>
             <%= text_field_tag :search, @comics['search'], placeholder: 'Title of the comic'  %>
             <%= button_tag 'Search' %>
         <% end =%>
-        <table class="table">
-            <tbody>
-                <% @comics[:comics].each_with_index do |comic, index| %>
-                    <tr>
-                        <td>
-                            <p><%= comic[:title] %></p>
-                            <img src="<%= comic[:thumbnail] %>" style="width:200px"/>
-                        </td>
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
+        <div class="table">
+            <% @comics[:comics].each_with_index do |comic, index| %>
+                <div style="margin-right:10px; width: 250px;">
+                    <p><%= comic[:title] %></p>
+                    <img src="<%= comic[:thumbnail] %>" style="width:200px"/>
+                </div>
+            <% end %>
+        </div>
+        <div>
+            <ul class="pager">
+                <li class="previous <%= @page == 1 ? 'disabled' : '' %>">
+                    <%= link_to_if @page > 1, "&larr; Previous".html_safe, comics_path(page: @page - 1) %>
+                </li>
+                <li class="next">
+                    <%= link_to "Next &rarr;".html_safe, comics_path(page: @page + 1) %>
+                </li>
+            </ul>
+        </div>
     </div>
   </body>
