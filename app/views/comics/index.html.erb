@@ -6,37 +6,61 @@
     <title> Comics </title>
 
     <style type="text/css" media="all">
-        .table {
+        body {
+            margin: 0;
+        }
+        .container {
+            margin: 0 auto;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            background-color: #1D1B26;
+        }
+        .comics {
+            margin-top: 12%;
             display: flex !important;
             flex-direction: row;
             flex-wrap: wrap;
+            width: 90%;
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.5em;
+            background-color: #F0131E;
+            position: fixed;
+            width: 100%;
+            
         }
     </style>
   </head>
   <body>
     <div class="container">
-        <h1>Comics</h1>
-        <%= form_tag(comics_path(page: 1), method: :get) do  %>
-            <%= text_field_tag :search, @comics['search'], placeholder: 'Title of the comic'  %>
-            <%= button_tag 'Search' %>
-        <% end =%>
-        <div class="table">
+        <%= render "shared/header" %>
+        <div class="comics">
             <% @comics[:comics].each_with_index do |comic, index| %>
                 <div style="margin-right:10px; width: 250px;">
-                    <p><%= comic[:title] %></p>
+                    <div style="display:flex;">
+                        <p style="color: white; margin-right:5px ;"><%= comic[:title] %></p>
+                        <% if comic[:favorite] == true %>
+                            <a href="#" style="width: 10px">
+                                <%= image_tag "/assets/heart_on.png" %>
+                                
+                            </a>
+                        <% else %>
+                            <a href="#" style="width: 10px">
+                                <%= image_tag "/assets/heart_off.png" %>
+                                <%= link_to comics_path(comic[:id])%>
+                            </a>
+                        <% end %>
+                    </div>
                     <img src="<%= comic[:thumbnail] %>" style="width:200px"/>
                 </div>
             <% end %>
         </div>
-        <div>
-            <ul class="pager">
-                <li class="previous <%= @page == 1 ? 'disabled' : '' %>">
-                    <%= link_to_if @page > 1, "&larr; Previous".html_safe, comics_path(page: @page - 1) %>
-                </li>
-                <li class="next">
-                    <%= link_to "Next &rarr;".html_safe, comics_path(page: @page + 1) %>
-                </li>
-            </ul>
+        <div class="footer">
+            <%= render "shared/pagination" %>
         </div>
     </div>
   </body>

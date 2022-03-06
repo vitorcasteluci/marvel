@@ -1,0 +1,11 @@
+<div class="header">
+    <div>
+        <%= image_tag "/assets/marvel_logo.png" %>
+    </div>
+    <div>
+        <%= form_tag(comics_path(page: 1), method: :get) do  %>
+            <%= text_field_tag :search, @comics['search'], placeholder: 'Title of the comic'  %>
+            <%= button_tag 'Search' %>
+        <% end =%>
+    </div>
+</div>
