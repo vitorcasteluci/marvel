@@ -43,7 +43,7 @@
                 <div style="margin-right:10px; width: 300px;">
                     <div style="display:flex;">
                         <a href="#" style="width: 10px">
-                            <%= link_to favorite_text, favorites_update_path(comic:comic), id:'favorite_link', remote: true %>
+                            <%= link_to image_tag(favorite_text), favorites_update_path(comic:comic), id:comic[:id], remote: true %>
                         </a>
                         <p style="color: white; margin-right:5px; margin-left: 15px;"><%= comic[:title] %></p>
                     </div>
