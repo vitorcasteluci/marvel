@@ -22,8 +22,7 @@ class Comics < OpenStruct
       title: comic['title'],
       thumbnail: comic['thumbnail']['path'] +
         '.' +
-        comic['thumbnail']['extension'],
-      favorite: false
+        comic['thumbnail']['extension']
     }
   end
 end

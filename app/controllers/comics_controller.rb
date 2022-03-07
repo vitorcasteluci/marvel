@@ -3,6 +3,7 @@
 # app/controllers/comics_controller.rb
 class ComicsController < ApplicationController
   before_action :set_page, only: [:index]
+  before_action :authenticate_user!, expect: [:index]
 
   PAGE_SIZE = 20
 

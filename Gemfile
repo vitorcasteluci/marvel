@@ -5,6 +5,9 @@ source 'https://rubygems.org'
 gem 'simplecov', require: false, group: :test
 gem 'sqlite3', '~> 1.3.0'
 gem 'activerecord-session_store'
+gem 'devise'
+gem 'factory_bot_rails'
+gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
 # Use SCSS for stylesheets

@@ -42,15 +42,9 @@
             <% @comics[:comics].each_with_index do |comic, index| %>
                 <div style="margin-right:10px; width: 300px;">
                     <div style="display:flex;">
-                        <% if comic[:favorite] == true %>
-                            <a href="#" style="width: 10px">
-                                <%= image_tag "/assets/heart_on.png" %>
-                            </a>
-                        <% else %>
-                            <a href="#" style="width: 10px">
-                                <%= image_tag "/assets/heart_off.png" %>
-                            </a>
-                        <% end %>
+                        <a href="#" style="width: 10px">
+                            <%= link_to favorite_text, favorites_update_path(comic:comic), id:'favorite_link', remote: true %>
+                        </a>
                         <p style="color: white; margin-right:5px; margin-left: 15px;"><%= comic[:title] %></p>
                     </div>
                     <img src="<%= comic[:thumbnail] %>" style="width:200px"/>
