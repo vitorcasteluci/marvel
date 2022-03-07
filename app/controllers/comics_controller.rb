@@ -3,7 +3,6 @@
 # app/controllers/comics_controller.rb
 class ComicsController < ApplicationController
   before_action :set_page, only: [:index]
-  helper_method :like
 
   PAGE_SIZE = 20
 
