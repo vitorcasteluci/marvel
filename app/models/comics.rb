@@ -9,8 +9,7 @@ class Comics < OpenStruct
 
     params = { offset: offset, limit: limit }
     params.merge!(titleStartsWith: search) if search.present?
-    puts params
-    comics = MarvelComics.call(params)
+    comics = MarvelComicsApi.call(params)
     {
       comics: comics['data']['results'].map { |comic| serialize_comic(comic) },
       search: search

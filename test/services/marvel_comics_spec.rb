@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-describe MarvelComics do
+describe MarvelComicsApi do
   describe 'get' do
     it 'get all the comics' do
       params = { offset: 0, limit: 20, ts: 'dpEVnqngEh6QRwPvEwkVtA', apikey: 'b8afdae5d2d57de8815f783682c5465a', hash: '63796265f5b0c77f5d6e8bfaed626e58' }
-      result = MarvelComics.call(params)
+      result = MarvelComicsApi.call(params)
       expect(result['code']).to eq(200)
     end
   end

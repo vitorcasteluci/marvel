@@ -3,7 +3,7 @@
 require 'securerandom'
 require 'digest'
 
-class MarvelComics
+class MarvelComicsApi
   MARVEL_API_ENDPOINT = 'https://gateway.marvel.com/v1/public/'
 
   attr_reader :conn
