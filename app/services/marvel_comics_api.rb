@@ -18,7 +18,7 @@ class MarvelComicsApi
 
   def comics(query_params = {})
     ActiveSupport::JSON.decode(
-        conn.get('comics', query_params.merge(authentication_params))
+        conn.get('comics?orderBy=-onsaleDate', query_params.merge(authentication_params))
         .body
       )
   end

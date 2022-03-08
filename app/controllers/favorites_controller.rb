@@ -2,7 +2,6 @@
 
 # Favorites Controller
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:update]
   def update
     favorite = Favorite.find_by(comic_id: params[:comic][:id])
     if favorite.nil?
@@ -16,11 +15,5 @@ class FavoritesController < ApplicationController
       format.html {}
       format.js {}
     end
-  end
-
-  private
-
-  def set_favorite
-    Favorite.find_by(comic_id: params[:comic][:id], user: current_user).nil?
   end
 end
