@@ -3,7 +3,8 @@
 # Favorites Controller
 class FavoritesController < ApplicationController
   def update
-    favorite = Favorite.find_by(comic_id: params[:comic][:id])
+    favorite = Favorite.find_by(comic_id: params[:comic][:id],
+                                user_id: current_user.id)
     if favorite.nil?
       Favorite.create(comic_id: params[:comic][:id], user: current_user)
       @favorite_exists = true
