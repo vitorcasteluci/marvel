@@ -12,3 +12,8 @@
 
 # todo
 1. Upvote and downvote buttons
+2. Change comics model to save the comics
+3. use middleware on marvelcomics api
+4. Otimize favorites controller and favorite view on index(REST API)
+5. Error handling
+6. Delete favorite logic from application controller
